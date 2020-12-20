@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head :: head_fragment(title = ~{::title}, scripts = ~{::script}, links = ~{::link})">
+  <title>ログイン</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col-8 offset-2">
+            <h1 class="">エラー</h1>
+            <div th:text="${error_message}"></div>
+        </div>
+    </div>
+</body>
+</html>

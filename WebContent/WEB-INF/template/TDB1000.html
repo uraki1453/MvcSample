@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/head :: head_fragment(title = ~{::title}, scripts = ~{::script}, links = ~{::link})">
+  <title>Dialectサンプル</title>
+</head>
+<body>
+    <div class="container pt-4">
+        <h1>職員一覧</h1>
+        <a th:href="@{/TDB1002}" class="btn btn-primary">新規登録</a>
+        <table class="table table-bordered mt-4">
+        <thead>
+          <tr>
+              <th>ログインID</th>
+              <th>名前</th>
+          </tr>
+        </thead>
+            <tbody>
+                <tr th:each="staff : ${staffs}">
+                    <td th:text="${staff.loginid}" />
+                    <td th:text="${staff.name}" />
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
