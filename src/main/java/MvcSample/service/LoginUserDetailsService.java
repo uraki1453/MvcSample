@@ -11,6 +11,7 @@ import MvcSample.mapper.StaffMapper;
 
 @Service
 public class LoginUserDetailsService implements UserDetailsService {
+
     @Autowired
     StaffMapper staffMapper;
 
@@ -20,7 +21,6 @@ public class LoginUserDetailsService implements UserDetailsService {
         if  (staff   ==  null)   {
             throw new UsernameNotFoundException("Wrong email or password");
         }
-
 
         return new LoginUserDetails(staff, "ADMIN");
     }

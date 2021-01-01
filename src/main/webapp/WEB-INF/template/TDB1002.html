@@ -10,10 +10,6 @@
         <div class="col-8 offset-2">
             <h1 class="">職員　新規登録</h1>
             <form class="col-10 offset-1" th:object="${staffForm}" th:action="@{/TDB1002}" method="post">
-                <!--/* ログインエラー時にメッセージを表示 */-->
-                <div th:if="${param.error}" class="alert alert-danger">
-                    <span th:text="${param.error}"></span>
-                </div>
                 <div class="form-group">
                    <label for="name">ログインID</label>
                    <input type="text" class="form-control" name="loginid"  th:field="*{loginid}"/>
@@ -28,6 +24,11 @@
                     <label for="password">パスワード</label>
                     <input type="password" class="form-control" name="password" th:field="*{password}"/>
                     <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                </div>
+                <div class="form-group">
+                    <label for="password">パスワード確認</label>
+                    <input type="password" class="form-control" name="confirmPassword" th:field="*{confirmPassword}"/>
+                    <div class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
                 </div>
                 <div>
                     <input type="submit" class="btn btn-primary col" value="登録">

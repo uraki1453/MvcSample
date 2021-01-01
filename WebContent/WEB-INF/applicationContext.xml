@@ -36,7 +36,6 @@
         <property name="characterEncoding" value="UTF-8" />
     </bean>
 
-
     <!-- MyBatis設定 -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
@@ -50,8 +49,8 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-<!--     トランザクション境界を設定
-    <tx:annotation-driven transaction-manager="transactionManager" /> -->
+    <!--     トランザクション境界を設定　-->
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
     <!-- SQLセッションファクトリー -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -60,9 +59,9 @@
     </bean>
 
     <!-- xxxMapper.xmlの記述を省略できる -->
-<!--     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="MvcSample.mapper" />
-    </bean> -->
+    </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="MvcSample.mapper.StaffMapper" />

@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import MvcSample.domain.form.StaffForm;
 import MvcSample.mapper.StaffMapper;
-
-
+import MvcSample.validation.MyGroupSequence;
 
 @Controller
 @RequestMapping("TDB1002")
@@ -31,14 +30,12 @@ public class TDB1002Controller {
     }
 
     @PostMapping
-    public String create(@Validated StaffForm staffForm, BindingResult bindingResult) {
+    public String create(@Validated(MyGroupSequence.class) StaffForm staffForm, BindingResult bindingResult) {
         logger.info(staffForm.getName());
         if(bindingResult.hasErrors()){
-            logger.info("aaaa");
-            logger.info(bindingResult.toString());
             return "TDB1002";
         }
         mapper.insertStaff(staffForm);
-        return "redirect:/TDB1001";
+        return "redirect:/TDB1000";
     }
 }
