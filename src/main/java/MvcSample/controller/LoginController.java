@@ -13,7 +13,6 @@ public class LoginController {
         //ログイン画面への遷移
         @GetMapping
         String getLogin() {
-            System.out.println("aaaaa");
             return "login";
         }
 

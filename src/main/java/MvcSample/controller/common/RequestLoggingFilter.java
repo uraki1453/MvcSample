@@ -29,7 +29,7 @@ public class RequestLoggingFilter extends GenericFilterBean {
         try {
             chain.doFilter(currentRequest, currentResponse);
         } finally {
-            int status = 200;//currentResponse
+            int status = currentResponse.getStatus();
             logger.info("Response status: {}", status);
         }
     }

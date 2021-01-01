@@ -10,7 +10,14 @@ public class LoginUserDetails extends User{
     static boolean credentialsNonExpired = true;
     static boolean accountNonLocked = true;
 
+    private Staff staff;
+
     public LoginUserDetails(Staff staff, String role) {
         super(staff.getLoginid(), staff.getPassword(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, AuthorityUtils.createAuthorityList(role));
+        this.staff = staff;
+    }
+
+    public Staff getStaff() {
+        return staff;
     }
 }

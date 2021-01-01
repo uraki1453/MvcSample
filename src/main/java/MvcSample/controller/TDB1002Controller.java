@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import MvcSample.domain.form.StaffForm;
 import MvcSample.mapper.StaffMapper;
@@ -30,12 +31,14 @@ public class TDB1002Controller {
     }
 
     @PostMapping
-    public String create(@Validated(MyGroupSequence.class) StaffForm staffForm, BindingResult bindingResult) {
+    public String create(@Validated(MyGroupSequence.class) StaffForm staffForm, BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
         logger.info(staffForm.getName());
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "TDB1002";
         }
         mapper.insertStaff(staffForm);
+        redirectAttributes.addFlashAttribute("message", "職員を作成しました。");
         return "redirect:/TDB1000";
     }
 }

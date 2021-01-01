@@ -15,9 +15,11 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.dialect.IDialect;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 import MvcSample.mapper.StaffMapper;
@@ -42,6 +44,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         SpringTemplateEngine ste = new SpringTemplateEngine();
         ste.setTemplateResolver(templateResolver());
         ste.setEnableSpringELCompiler(true);
+        ste.addDialect(springSecurityDialect());
         return ste;
     }
 
@@ -51,6 +54,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
         tvr.setTemplateEngine(templateEngine());
         tvr.setCharacterEncoding(StandardCharsets.UTF_8.name());
         return tvr;
+    }
+
+    @Bean
+    public IDialect springSecurityDialect() {
+        SpringSecurityDialect dialect = new SpringSecurityDialect();
+        return dialect;
     }
 
     @Bean

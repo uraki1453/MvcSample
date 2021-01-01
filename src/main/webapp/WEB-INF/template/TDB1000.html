@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html
     xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="common/head :: head_fragment(title = ~{::title}, scripts = ~{::script}, links = ~{::link})">
-  <title>Dialectサンプル</title>
+  <title>職員一覧</title>
 </head>
 <body>
+	<nav class="navbar navbar-light bg-light">
+	  <a class="navbar-brand" href="#">
+	    <span sec:authentication="principal.staff.name"></span>
+	  </a>
+	</nav>
     <div class="container pt-4">
         <h1>職員一覧</h1>
         <a th:href="@{/TDB1002}" class="btn btn-primary">新規登録</a>
