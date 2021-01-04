@@ -40,10 +40,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .usernameParameter("loginid")
                 //ログイン時のパスワード
                 .passwordParameter("password")
+
             .and()
             .logout()
                 //ログアウト時の遷移先 POSTでアクセス
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/login")
+            .and()
+                .sessionManagement().maximumSessions(1).maxSessionsPreventsLogin(true);
     }
 
     //パスワードのアルゴリズムをBCryptに設定

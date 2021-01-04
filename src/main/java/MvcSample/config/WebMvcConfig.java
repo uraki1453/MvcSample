@@ -9,6 +9,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -22,11 +23,13 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
+import MvcSample.aspect.MapperAspect;
 import MvcSample.mapper.StaffMapper;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages= {"MvcSample.controller","MvcSample.service","MvcSample.config"})
+@ComponentScan(basePackages= {"MvcSample.controller","MvcSample.service","MvcSample.config, MvcSample.mapper"})
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class WebMvcConfig implements WebMvcConfigurer {
 
     @Bean
@@ -102,6 +105,11 @@ public class WebMvcConfig implements WebMvcConfigurer {
         messageSource.setBasename("messages");
         messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
         return messageSource;
+    }
+
+    @Bean
+    public MapperAspect mapperAspect() {
+        return new MapperAspect();
     }
 
     @Override

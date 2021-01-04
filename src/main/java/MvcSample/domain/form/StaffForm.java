@@ -1,5 +1,7 @@
 package MvcSample.domain.form;
 
+import java.util.Date;
+
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -27,6 +29,12 @@ public class StaffForm {
     @NotEmpty(groups = Group1.class)
     @Size(min = 2, max = 30, groups = Group1.class)
     private String confirmPassword;
+
+
+    private String createdBy;
+    private Date createdAt;
+    private String updatedBy;
+    private Date updatedAt;
 
     public String getLoginid() {
         return loginid;
@@ -62,5 +70,37 @@ public class StaffForm {
 
     public String getHashPassword() {
         return new BCryptPasswordEncoder().encode(this.password);
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

@@ -27,7 +27,7 @@
 		<level value="DEBUG" />
 		<appender-ref ref="SQL_FILE" />
 	</logger>
-	<root level="info">
+	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />
 	</root>
 </configuration>

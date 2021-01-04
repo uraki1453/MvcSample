@@ -6,7 +6,7 @@
 
   <insert id="insertStaff" >
     INSERT INTO
-        m_staff(loginid,name,password)
-    VALUES(#{loginid}, #{name}, #{hashPassword})
+        m_staff(loginid,name,password,created_by,created_at,updated_by,updated_at)
+    VALUES(#{loginid}, #{name}, #{hashPassword},#{createdBy}, #{createdAt}, #{updatedBy}, #{updatedAt})
   </insert>
 </mapper>
