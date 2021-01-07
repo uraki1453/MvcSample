@@ -18,7 +18,7 @@ public class StaffForm {
     @Size(min = 2, max = 30, groups = Group1.class)
     private String loginid;
 
-    @NotEmpty(groups = Group1.class)
+    @NotEmpty(groups = Group1.class, message="名前は必須です。")
     @Size(min = 2, max = 30, groups = Group1.class)
     private String name;
 
