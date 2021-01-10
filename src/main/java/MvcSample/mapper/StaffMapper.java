@@ -15,7 +15,7 @@ public interface StaffMapper {
     @Select("select * from m_staff where loginid = #{loginid}")
     Staff findByLoginid(String loginid);
 
-    @Select("select * from m_staff order by loginid")
+    @Select("select loginid, name, created_at createdAt, updated_at updatedAt  from m_staff order by loginid")
     List<Staff> selectAll();
 
 

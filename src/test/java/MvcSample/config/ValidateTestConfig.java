@@ -6,7 +6,7 @@ import org.springframework.validation.SmartValidator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 @Configuration
-public class TestConfig {
+public class ValidateTestConfig {
     @Bean
     public SmartValidator validator() {
         return new LocalValidatorFactoryBean();

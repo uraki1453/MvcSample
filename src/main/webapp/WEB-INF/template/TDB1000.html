@@ -20,12 +20,16 @@
           <tr>
               <th>ログインID</th>
               <th>名前</th>
+              <th>作成日時</th>
+              <th>更新日時</th>
           </tr>
         </thead>
             <tbody>
                 <tr th:each="staff : ${staffs}">
                     <td th:text="${staff.loginid}" />
                     <td th:text="${staff.name}" />
+                    <td th:text="${#dates.formatISO(staff.createdAt)}" />
+                    <td th:text="${#dates.formatISO(staff.updatedAt)}" />
                 </tr>
             </tbody>
         </table>

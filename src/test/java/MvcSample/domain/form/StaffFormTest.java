@@ -1,23 +1,23 @@
 package MvcSample.domain.form;
 
 import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.*;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.SmartValidator;
 
-import MvcSample.config.TestConfig;
+import MvcSample.config.ValidateTestConfig;
 import MvcSample.validation.Group1;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {TestConfig.class})
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {ValidateTestConfig.class})
 public class StaffFormTest {
     @Autowired
     SmartValidator validator;
@@ -25,7 +25,7 @@ public class StaffFormTest {
     private StaffForm staffForm = new StaffForm();
     private BindingResult bindingResult = new BindException(staffForm, "StaffForm");
 
-    @Before
+    @BeforeEach
     public void before() {
         staffForm.setLoginid("test");
     }
