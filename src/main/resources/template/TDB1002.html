@@ -1,45 +1,99 @@
 <!DOCTYPE html>
-<html
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
-<head th:replace="common/head :: head_fragment(title = ~{::title}, scripts = ~{::script}, links = ~{::link})">
-  <title>職員　新規登録</title>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<!--  TODO: spring thymeleaf list bind -->
+<head
+	th:replace="common/head :: head_fragment(title = ~{::title}, scripts = ~{::script}, links = ~{::link})">
+<title>職員 新規登録</title>
 </head>
 <body>
-    <div class="container">
-        <div class="col-8 offset-2">
-            <h1 class="">職員　新規登録</h1>
-            <form class="col-10 offset-1" th:object="${staffForm}" th:action="@{/TDB1002}" method="post">
-                <div class="form-group">
-                   <label for="name">ログインID</label>
-                   <input type="text" class="form-control" name="loginid"  th:field="*{loginid}"/>
-                   <div class="text-danger" th:if="${#fields.hasErrors('loginid')}" th:errors="*{loginid}"></div>
-                </div>
-                 <div class="form-group">
-                   <label for="name">名前</label>
-                   <input type="text" class="form-control" name="name" th:field="*{name}"/>
-                   <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
-                </div>
-                <div class="form-group">
-                   <label for="name">登録日</label>
-                   <input type="text" class="form-control" name="registDate" th:field="*{registDate}"/>
-                   <div class="text-danger" th:if="${#fields.hasErrors('registDate')}" th:errors="${staffForm.registDate}"></div>
-                </div>
-                <div class="form-group">
-                    <label for="password">パスワード</label>
-                    <input type="password" class="form-control" name="password" th:field="*{password}"/>
-                    <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-                </div>
-                <div class="form-group">
-                    <label for="password">パスワード確認</label>
-                    <input type="password" class="form-control" name="confirmPassword" th:field="*{confirmPassword}"/>
-                    <div class="text-danger" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></div>
-                </div>
-                <div>
-                    <input type="submit" class="btn btn-primary col" value="登録">
-                </div>
-            </form>
-        </div>
-    </div>
+	<script>
+		$(function($) {
+			$("#addForm").on(
+					"click",
+					function() {
+						$("#emailList tbody tr:first-child").clone(true)
+								.appendTo("#emailList tbody");
+
+						$("#emailList tbody tr:last-child").css("display",
+								"table-row");
+
+						$(".btnDelete").on("click", function() {
+							$(this).parent().parent().remove();
+						});
+						sort();
+					});
+		});
+		  function sort(element) {
+		    var arr = $("table tbody tr").sort(function(a, b) {
+		        var a_num = Number($(a).find("td input.email").val());
+		        var b_num = Number($(b).find("td input.email").val());
+		        return a_num - b_num;
+		    });
+		    $("table tbody").html(arr);
+		  }
+	</script>
+	<div class="container">
+		<div class="col-8 offset-2">
+			<h1 class="">職員 新規登録</h1>
+			<form class="col-10 offset-1" th:object="${staffForm}"
+				th:action="@{/TDB1002}" method="post">
+				<div class="form-group">
+					<label for="name">ログインID</label> <input type="text"
+						class="form-control" name="loginid" th:field="*{loginid}" />
+					<div class="text-danger" th:if="${#fields.hasErrors('loginid')}"
+						th:errors="*{loginid}"></div>
+				</div>
+				<div class="form-group">
+					<label for="name">名前</label> <input type="text"
+						class="form-control" name="name" th:field="*{name}" />
+					<div class="text-danger" th:if="${#fields.hasErrors('name')}"
+						th:errors="*{name}"></div>
+				</div>
+				<div class="form-group">
+					<label for="name">登録日</label> <input type="text"
+						class="form-control" name="registDate" th:field="*{registDate}" />
+					<div class="text-danger" th:if="${#fields.hasErrors('registDate')}"
+						th:errors="${staffForm.registDate}"></div>
+				</div>
+				<div class="form-group">
+					<label for="password">パスワード</label> <input type="password"
+						class="form-control" name="password" th:field="*{password}" />
+					<div class="text-danger" th:if="${#fields.hasErrors('password')}"
+						th:errors="*{password}"></div>
+				</div>
+				<div class="form-group">
+					<label for="password">パスワード確認</label> <input type="password"
+						class="form-control" name="confirmPassword"
+						th:field="*{confirmPassword}" />
+					<div class="text-danger"
+						th:if="${#fields.hasErrors('confirmPassword')}"
+						th:errors="*{confirmPassword}"></div>
+				</div>
+				<input id="addForm" type="button" value="追加" />
+				<table id="emailList">
+					<thead>
+						<tr>
+							<th>名前</th>
+							<th>メールアドレス</th>
+							<th>期限</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="display: none;">
+							<td><input style="width: 150px;" name="name[]" type="text" /></td>
+							<td><input style="width: 150px;" class="email" name="email[]" type="text" /></td>
+							<td><input style="width: 150px;" name="date[]" type="text" /></td>
+							<td><input class="deleteForm" type="button" value="削除" /></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="pt-4">
+					<input type="submit" class="btn btn-primary col" value="登録">
+				</div>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
