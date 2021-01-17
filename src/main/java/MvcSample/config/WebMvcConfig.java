@@ -42,7 +42,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setPrefix("/WEB-INF/template/");
+        templateResolver.setPrefix("classpath:/template/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding(StandardCharsets.UTF_8.name());
@@ -111,7 +111,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry reg) {
-        reg.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        reg.addResourceHandler("/resources/**").addResourceLocations("classpath:/static/");
     }
 
 }

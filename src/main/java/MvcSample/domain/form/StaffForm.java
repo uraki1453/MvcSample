@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import MvcSample.validation.Equals;
@@ -30,6 +31,8 @@ public class StaffForm {
     @Size(min = 2, max = 30, groups = Group1.class)
     private String confirmPassword;
 
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    private Date registDate;
 
     private String createdBy;
     private Date createdAt;
@@ -74,6 +77,14 @@ public class StaffForm {
 
     public String getCreatedBy() {
         return createdBy;
+    }
+
+    public Date getRegistDate() {
+        return registDate;
+    }
+
+    public void setRegistDate(Date resistDate) {
+        this.registDate = resistDate;
     }
 
     public void setCreatedBy(String createdBy) {

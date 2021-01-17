@@ -21,6 +21,11 @@
                    <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                 </div>
                 <div class="form-group">
+                   <label for="name">登録日</label>
+                   <input type="text" class="form-control" name="registDate" th:field="*{registDate}"/>
+                   <div class="text-danger" th:if="${#fields.hasErrors('registDate')}" th:errors="${staffForm.registDate}"></div>
+                </div>
+                <div class="form-group">
                     <label for="password">パスワード</label>
                     <input type="password" class="form-control" name="password" th:field="*{password}"/>
                     <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
